@@ -1,6 +1,9 @@
-import { CartProps } from "../libs/types";
+import { useCartContext } from "../hooks/useCartContext";
+import CartItem from "./CartItem";
 
-export default function Cart({ items, onUpdateItemQuantity }: CartProps) {
+export default function Cart() {
+  const { items } = useCartContext();
+
   const totalPrice = items.reduce(
     (acc, item) => acc + (item.price ?? 0) * item.quantity,
     0
@@ -12,27 +15,7 @@ export default function Cart({ items, onUpdateItemQuantity }: CartProps) {
       {items.length === 0 && <p>No items in cart!</p>}
       {items.length > 0 && (
         <ul id="cart-items">
-          {items.map((item) => {
-            const formattedPrice = `$${(item.price ?? 0).toFixed(2)}`;
-
-            return (
-              <li key={item.id}>
-                <div>
-                  <span>{item.name}</span>
-                  <span> ({formattedPrice})</span>
-                </div>
-                <div className="cart-item-actions">
-                  <button onClick={() => onUpdateItemQuantity(item.id, -1)}>
-                    -
-                  </button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => onUpdateItemQuantity(item.id, 1)}>
-                    +
-                  </button>
-                </div>
-              </li>
-            );
-          })}
+          <CartItem />
         </ul>
       )}
       <p id="cart-total-price">

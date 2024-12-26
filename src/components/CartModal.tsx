@@ -4,7 +4,7 @@ import Cart from "./Cart";
 import { CartModalProps } from "../libs/types";
 
 const CartModal = forwardRef(function Modal(
-  { cartItems, onUpdateCartItemQuantity, title, actions }: CartModalProps,
+  { title, actions }: CartModalProps,
   ref
 ) {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -20,7 +20,7 @@ const CartModal = forwardRef(function Modal(
   return createPortal(
     <dialog id="modal" ref={dialog}>
       <h2>{title}</h2>
-      <Cart items={cartItems} onUpdateItemQuantity={onUpdateCartItemQuantity} />
+      <Cart />
       <form method="dialog" id="modal-actions">
         {actions}
       </form>

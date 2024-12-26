@@ -15,24 +15,18 @@ export type ShoppingCartItem = {
 
 export interface ShoppingCart {
   items: ShoppingCartItem[];
+  addItemToCart: (id: string) => void;
+  updateCartItemQuantity: (product: string, amount: number) => void;
 }
 
-export interface CartProps {
-  items: ShoppingCartItem[];
-  onUpdateItemQuantity: (id: string, quantity: number) => void;
-}
+export interface CartProps {}
 
 export interface CartModalProps {
-  cartItems: ShoppingCartItem[];
   title: string;
   actions: React.ReactNode;
-  onUpdateCartItemQuantity: (id: string, quantity: number) => void;
 }
 
-export interface HeaderProps {
-  cart: ShoppingCart;
-  onUpdateCartItemQuantity: (id: string, quantity: number) => void;
-}
+export interface HeaderProps {}
 
 export interface ProductProps {
   id: string;
@@ -40,9 +34,9 @@ export interface ProductProps {
   title: string;
   price: number;
   description: string;
-  onAddToCart: (id: string) => void;
 }
 
 export interface ShopProps {
-  onAddItemToCart: (id: string) => void;
+  children: React.ReactNode;
+  onAddItemToCart?: (id: string) => void;
 }
