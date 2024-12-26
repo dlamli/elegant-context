@@ -1,7 +1,8 @@
-import { DUMMY_PRODUCTS } from '../dummy-products.js';
-import Product from './Product.jsx';
+import { DUMMY_PRODUCTS } from "../dummy-products.js";
+import { ShopProps } from "../libs/types.js";
+import Product from "./Product.js";
 
-export default function Shop({ onAddItemToCart }) {
+export default function Shop({ onAddItemToCart }: ShopProps) {
   return (
     <section id="shop">
       <h2>Elegant Clothing For Everyone</h2>

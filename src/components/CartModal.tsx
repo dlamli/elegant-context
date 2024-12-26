@@ -1,17 +1,18 @@
-import { forwardRef, useImperativeHandle, useRef } from 'react';
-import { createPortal } from 'react-dom';
-import Cart from './Cart';
+import { forwardRef, useImperativeHandle, useRef } from "react";
+import { createPortal } from "react-dom";
+import Cart from "./Cart";
+import { CartModalProps } from "../libs/types";
 
 const CartModal = forwardRef(function Modal(
-  { cartItems, onUpdateCartItemQuantity, title, actions },
+  { cartItems, onUpdateCartItemQuantity, title, actions }: CartModalProps,
   ref
 ) {
-  const dialog = useRef();
+  const dialog = useRef<HTMLDialogElement>(null);
 
   useImperativeHandle(ref, () => {
     return {
       open: () => {
-        dialog.current.showModal();
+        dialog.current?.showModal();
       },
     };
   });
@@ -24,7 +25,7 @@ const CartModal = forwardRef(function Modal(
         {actions}
       </form>
     </dialog>,
-    document.getElementById('modal')
+    document.getElementById("modal")!
   );
 });
 

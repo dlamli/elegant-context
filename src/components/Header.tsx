@@ -1,14 +1,18 @@
-import { useRef } from 'react';
+import { useRef } from "react";
 
-import CartModal from './CartModal.jsx';
+import CartModal from "./CartModal.tsx";
+import { HeaderProps } from "../libs/types.ts";
 
-export default function Header({ cart, onUpdateCartItemQuantity }) {
-  const modal = useRef();
+export default function Header({
+  cart,
+  onUpdateCartItemQuantity,
+}: HeaderProps) {
+  const modal = useRef<HTMLDialogElement>();
 
   const cartQuantity = cart.items.length;
 
   function handleOpenCartClick() {
-    modal.current.open();
+    modal.current?.open();
   }
 
   let modalActions = <button>Close</button>;

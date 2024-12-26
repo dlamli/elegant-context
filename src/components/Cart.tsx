@@ -1,6 +1,8 @@
-export default function Cart({ items, onUpdateItemQuantity }) {
+import { CartProps } from "../libs/types";
+
+export default function Cart({ items, onUpdateItemQuantity }: CartProps) {
   const totalPrice = items.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    (acc, item) => acc + (item.price ?? 0) * item.quantity,
     0
   );
   const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
@@ -11,7 +13,7 @@ export default function Cart({ items, onUpdateItemQuantity }) {
       {items.length > 0 && (
         <ul id="cart-items">
           {items.map((item) => {
-            const formattedPrice = `$${item.price.toFixed(2)}`;
+            const formattedPrice = `$${(item.price ?? 0).toFixed(2)}`;
 
             return (
               <li key={item.id}>
